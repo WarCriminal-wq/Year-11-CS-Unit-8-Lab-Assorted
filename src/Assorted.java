@@ -1,6 +1,5 @@
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.*;
+import static java.lang.Integer.*;
 public class Assorted {
 
     /**
@@ -13,8 +12,17 @@ public class Assorted {
      * @return the sum of the elements in the list as if all elements were
      *         integer data types.
      */
-    public static int findSum(List<?> list) {
-        return 0;
+    public static int findSum(List<?> diddy) {
+        int sum = 0;
+        for (int i = 0; i < diddy.size(); i++) {
+            if (diddy.get(i).getClass().getSimpleName().equals("String")){
+                sum += (parseInt((String) diddy.get(i)));
+            }
+            else{
+                sum += (int) diddy.get(i);
+            }
+        }
+        return sum;
     }
 
     /**
@@ -25,8 +33,16 @@ public class Assorted {
      * @param list a list of integer and string values. E.g [1, 2, "a", 5]
      * @return a list containing integers only.
      */
-    public static List<Integer> filterStrings(List list) {
-        return null;
+    public static List<Integer> filterStrings(List drake) {
+        ArrayList <Integer> diddle = new ArrayList<>();
+        for (Object ob : drake) {
+            if (ob.getClass().getSimpleName().equals("String")) {
+                continue;
+            } else {
+                diddle.add((int) ob);
+            }
+        }
+        return diddle;
     }
 
     /**
@@ -38,8 +54,14 @@ public class Assorted {
      * @return a list where each element is prepended by the correct line number
      *         e.g. ["1: a", "2: b", "3: c"]
      */
-    public static List<String> lineNumbering(List<String> list) {
-        return null;
+    public static List<String> lineNumbering(List<String> epstein) {
+        int i = 1;
+        ArrayList<String> diddy_oil = new ArrayList<>();
+        for (String str : epstein){
+            diddy_oil.add(i + ": " + str);
+            i++;
+        }
+        return diddy_oil;
     }
 
     /**
@@ -60,8 +82,13 @@ public class Assorted {
      * @param list a list of integer pairs.
      * @return the number of people who are still on the bus after the last stop.
      */
-    public static int busStop(List<Integer[]> list) {
-        return 0;
+    public static int busStop(List<Integer[]> epstein_island) {
+        int numberOfPeople = 0;
+        for (Integer[] pairs : epstein_island) {
+            numberOfPeople += pairs[0];
+            numberOfPeople -= pairs[1];
+        }
+        return numberOfPeople;
     }
 
     /**
@@ -72,8 +99,13 @@ public class Assorted {
      * @return the decimal value of the binary representation of the list.
      *         Eg: [0, 0, 0, 1] is treated as 0001 which is the binary representation of 1.
      */
-    public static int toBinary(List<Integer> list) {
-        return 0;
+    public static int toBinary(List<Integer> diddle) {
+        String binaryString = "";
+        for(int i = 0; i < diddle.size(); i++){
+            binaryString = binaryString + Integer.toString(diddle.get(i));
+        }
+        int finalInt = Integer.valueOf(binaryString, 2);
+        return finalInt;
     }
 
     /**
@@ -92,7 +124,14 @@ public class Assorted {
      *              subtractList([1,2,2,2,3], [2]) returns [1,3]
      */
     public static List<Integer> subtractList(List<Integer> listA, List<Integer> listB) {
-        return null;
+        List<Integer> drake = new ArrayList<>();
+        int reference = listB.get(0);
+        for(int i = 0; i < listA.size(); i++){
+            if(listA.get(i) != reference){
+                drake.add(listA.get(i));
+            }
+        }
+        return drake;
     }
 
     /**
@@ -105,8 +144,20 @@ public class Assorted {
      * @return a list where the odd integers have been sorted in ascending order and the even
      *         integers remain in their original position.
      */
-    public static List<Integer> sortOdd(List<Integer> list) {
-        return null;
+    public static List<Integer> sortOdd(List<Integer> P_DIDDY) {
+        List<Integer> locationOfOdd = new ArrayList<>();
+        List<Integer> odd = new ArrayList<>();
+        for(int i = 0; i < P_DIDDY.size(); i++){
+            if(P_DIDDY.get(i)%2 != 0){
+                locationOfOdd.add(i);
+                odd.add(P_DIDDY.get(i));
+            }
+        }
+        Collections.sort(odd);
+        for(int i = 0; i < locationOfOdd.size(); i++){
+            P_DIDDY.set(locationOfOdd.get(i), odd.get(i));
+        }
+        return P_DIDDY;
     }
 
     /**
@@ -130,9 +181,25 @@ public class Assorted {
      *         e.g. uniqueNumber(1,10) returns [1,2,3,4,5,6,7,8,9]
      *              uniqueNumber(1,100) returns [1,2,3,4,5,6,7,8,9,89]
      */
-    public static List<Integer> uniqueNumber(int lowerBound, int upperBound) {
-        return null;
+    public static List<Integer> uniqueNumber(int stalin, int BASHAR_AL_ASSAD) {
+        List<Integer> ans = new ArrayList<>();
+        for(int i = stalin; i <= BASHAR_AL_ASSAD; i++){
+            String number = "" + i;
+            int numberOfDigits = number.length();
+            double sum = 0;
+            for(int n = 0; n < numberOfDigits; n++){
+                int digitCount = n+1;
+                sum = sum + Math.pow(Character.getNumericValue(number.charAt(n)), digitCount);
+                System.out.println(i);
+                System.out.println(sum);
+            }
+            if(i == sum){
+                ans.add(i);
+            }
+        }
+        return ans;
     }
+
 
     /**
      * Challenge 9
@@ -154,7 +221,26 @@ public class Assorted {
      *              filterNTimes([20,37,20,21], 1) returns [20,37,21]
      */
     public static List<Integer> filterNTimes(List<Integer> list, int n) {
-        return null;
+        ArrayList<Integer> numbers = new ArrayList<>();
+        for(int i = 0; i < list.size(); i++){
+            int number = list.get(i);
+            int countList = 0;
+            int countNumbers = 0;
+            for(int j = 0; j < list.size(); j++){
+                if(list.get(j) == number){
+                    countList = countList + 1;
+                }
+            }
+            for(int k = 0; k < numbers.size(); k++){
+                if(numbers.get(k) == number){
+                    countNumbers = countNumbers + 1;
+                }
+            }
+            if(countNumbers < n && countNumbers < countList){
+                numbers.add(number);
+            }
+        }
+        return numbers;
     }
 
     /**
@@ -191,9 +277,28 @@ public class Assorted {
      *              ["WEST", "WEST"]
      */
     public static List<String> wildWest(List<String> directions) {
-        return null;
+        List<String> simplifiedDirections = new ArrayList<>();
+        for(String direction : directions){
+            if(!simplifiedDirections.isEmpty() && isOpposite(simplifiedDirections.get(simplifiedDirections.size()-1), direction)){
+                simplifiedDirections.remove(simplifiedDirections.size()-1);
+            }
+            else{
+                simplifiedDirections.add(direction);
+            }
+        }
+        return simplifiedDirections;
     }
+//why??
+    public static boolean isOpposite(String directionOne, String directionTwo){
+        if(directionOne.equals("NORTH") && directionTwo.equals("SOUTH")) return true;
+        else if(directionOne.equals("SOUTH") && directionTwo.equals("NORTH")) return true;
+        else if(directionOne.equals("EAST") && directionTwo.equals("WEST")) return true;
+        else if(directionOne.equals("WEST") && directionTwo.equals("EAST")) return true;
+        return false;
+    }
+// helper methods are diabolical
 
+    // brooooo im so done with this s***
     /**
      * Challenge 11
      *
@@ -216,5 +321,6 @@ public class Assorted {
      */
     public static int queueTime(List<Integer> queue, int tillsOpen) {
         return 0;
+        //hell no
     }
 }
